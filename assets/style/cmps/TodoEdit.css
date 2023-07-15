@@ -1,0 +1,24 @@
+.edit-todo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.edit-todo form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.edit-todo input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.edit-todo button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

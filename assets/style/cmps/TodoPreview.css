@@ -1,0 +1,55 @@
+.todo-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.todo-preview .toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    color: green;
+    background-color: transparent;
+    outline: solid 1.2px gray;
+    padding: 0.5em;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.8em;
+    cursor: pointer;
+}
+
+.todo-preview .todo-name {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.todo-preview .detail-btn,
+.todo-preview .remove-btn {
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.todo-preview .edit-btn {
+    background-color: #fbb93f;
+    color: white;
+}
+
+.todo-preview .detail-btn {
+    background-color: #3399ff;
+    color: white;
+}
+
+.todo-preview .remove-btn {
+    background-color: #ff3333;
+    color: white;
+}

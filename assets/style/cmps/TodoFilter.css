@@ -1,0 +1,41 @@
+.todo-filter {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-block-end: 50px;
+    margin-block-start: 50px;
+}
+
+.todo-filter .toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    background-color: transparent;
+    outline: solid 1.2px gray;
+    padding: 0.8em;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.8em;
+    cursor: pointer;
+}
+
+.todo-filter .toggle-btn.inactive {
+    color: gray;
+}
+
+.todo-filter .toggle-btn.active {
+    color: green;
+}
+
+.todo-filter input {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.todo-filter select {
+    padding: 10px;
+    flex-grow: 1;
+}

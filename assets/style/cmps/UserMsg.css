@@ -1,0 +1,20 @@
+.alert {
+    position: fixed;
+    top: calc(5vh + 20px);
+    right: 10px;
+
+    padding: 10px;
+    background-color: grey;
+
+    color: white;
+    font-size: 1.2em;
+}
+
+.alert-success {
+    background-color: darkseagreen;
+}
+
+.alert-error {
+    background-color: tomato;
+}
+
