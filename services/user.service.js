@@ -57,7 +57,7 @@ function signup(credentials) {
     const user = users.find(u => u.username === credentials.username)
     if (user) return Promise.reject('Username already taken')
     return storageService
-      .post(USER_KEY, { ...credentials, balance: 600, activities: [{ txt: 'Created account', at: Date.now() }], prefs: {color: 'black', bgColor: 'whitesmoke'}, todos: [] })
+      .post(USER_KEY, { ...credentials, balance: 600, activities: [{ txt: 'Created account', at: Date.now() }], prefs: {color: '#f3f3f3', bgColor: '#3c68ec'}, todos: [] })
       .then(user => {
         return _saveUserToStorage(user)
       })
@@ -70,10 +70,10 @@ function addActivity(txt) {
     txt,
     at: Date.now()
   }
-  user.activities.unshift(activity)
+  user.activities.push(activity)
   return storageService.put(USER_KEY, user).then(updatedUser => {
     _saveUserToStorage(updatedUser)
-    return updatedUser.activities
+    return updatedUser
   })
 }
 

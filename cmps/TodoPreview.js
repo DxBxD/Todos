@@ -4,7 +4,8 @@ export default {
         <article class="todo-preview">
             <button class="toggle-btn" @click="onToggleTodoStatus">{{ todo.isDone ? '✔' : '' }}</button>
             <span class="todo-name">{{ todo.name }}</span>
-            <button class="detail-btn" @click="onViewDetails">Details</button>
+            <button class="edit-btn" @click="onEditTodo">Edit</button>
+            <RouterLink :to="'/todo/' + todo._id"><button class="detail-btn">Details</button></RouterLink>
             <button class="remove-btn" @click="onRemove">Remove</button>
         </article>
     `,
@@ -15,8 +16,12 @@ export default {
         onToggleTodoStatus() {
             this.$emit('toggleTodoStatus', this.todo)
         },
+        onEditTodo() {
+            this.$emit('edit', this.todo)
+        },
         onViewDetails() {
             this.$router.push({ name: 'TodoDetails', params: { todoId: this.todo._id } })
-        }
+        },
+
     }
 }

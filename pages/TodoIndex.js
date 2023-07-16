@@ -7,13 +7,18 @@ export default {
     template: `
     <section v-if="todos" class="todos-page router-view"> 
       <TodoFilter @filter="setFilterBy" @sort="setSortBy"/>
-      <TodoEdit />
-      <TodoList v-if="todos" @remove="removeTodo" @toggleTodoStatus="toggleTodoStatus" :todos="todos" />
+      <TodoEdit :existingTodoToEdit="existingTodoToEdit" @resetTodoToEdit="todoToEdit = null"/>
+      <TodoList v-if="todos" @remove="removeTodo" @toggleTodoStatus="toggleTodoStatus" @edit="editTodo" :todos="todos" />
     </section>
     <section v-else class="Spinner">
       <Spinner />
     </section>
   `,
+    data() {
+        return {
+            existingTodoToEdit: null
+        }
+    },
     computed: {
         todos() {
             return this.$store.getters.todos
@@ -31,7 +36,15 @@ export default {
             this.$store.dispatch('updateTodo', updatedTodo)
                 .then(() => {
                     this.$store.dispatch('loadTodos')
+                    if (todo.isDone) {
+                        this.$store.dispatch({type: 'addActivity', txt: `User marked todo "${todo.name}" as active`})
+                    } else if (!todo.isDone) {
+                        this.$store.dispatch({type: 'addActivity', txt: `User marked todo "${todo.name}" as done`})
+                    }
                 })
+        },
+        editTodo(todo) {
+            this.existingTodoToEdit = todo
         },
         setFilterBy(filterBy) {
             this.$store.dispatch('setFilterBy', filterBy)

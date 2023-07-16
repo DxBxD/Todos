@@ -1,4 +1,5 @@
 export default {
+    props: ['existingTodoToEdit'],
     template: `
         <section class="edit-todo">
             <form @submit.prevent="saveTodo">
@@ -10,6 +11,7 @@ export default {
     `,
     computed: {
         todoToEdit() {
+            if (this.existingTodoToEdit) return this.existingTodoToEdit
             return this.$store.getters.getEmptyTodo
         }
     },
@@ -26,6 +28,7 @@ export default {
             const updatedTodo = { ...this.todoToEdit, name: this.localTodoName }
             if (updatedTodo._id) {
                 this.$store.dispatch('updateTodo', updatedTodo).then(() => {
+                    this.$emit('resetTodoToEdit')
                     this.$store.commit('resetTodo')
                     this.localTodoName = ''
                 })
@@ -37,6 +40,7 @@ export default {
             }
         },
         cancelEdit() {
+            this.$emit('resetTodoToEdit')
             this.isEditing = false
             this.$store.commit('resetTodo')
             this.localTodoName = ''

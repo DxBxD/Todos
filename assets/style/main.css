@@ -6,6 +6,7 @@
 @import './cmps/TodoPreview.css';
 @import './cmps/TodoEdit.css';
 @import './cmps/TodoFilter.css';
+@import './cmps/TodoDetails.css';
 @import './pages/UserDetails.css';
 
 * {
@@ -50,7 +51,7 @@ header {
 
 button {
     padding: 3px 5px;
-    background-color: rgb(251, 156, 32);
+    background-color: #3c68ec;
     border: none;
     border-radius: 3px;
     
@@ -60,7 +61,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(249, 181, 63);
+    background-color: #5178ee;
 }
 
 .main-title {

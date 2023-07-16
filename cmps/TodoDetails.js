@@ -4,8 +4,8 @@ export default {
         <h1>{{ todo.name }}</h1>
 		<!-- <span>Owner: {{todo.owner.fullname}}</span><br> -->
 		<span>Status: {{ todo.isDone ? 'Done' : 'Active' }}</span>
-		<span>Created at: {{ todo.createdAt }}</span>
-		<RouterLink to="/todo">Back</RouterLink>
+		<span>Created at: {{ date }}</span>
+		<RouterLink to="/todo"><button class="todo-details-back-btn">Back</button></RouterLink>
     </section>
     `,
     data() {
@@ -14,14 +14,16 @@ export default {
         }
     },
     created() {
+        const todos = this.$store.getters.todos
+        console.log(todos)
         const { todoId } = this.$route.params
-        this.$store.getters.getById(todoId)
-            .then((todo) => {
-                this.todo = todo
-            })
-            .catch((err) => {
-                alert('Cannot load todo')
-                this.$router.push('/todo')
-            })
+        this.todo = todos.find(todo => todo._id === todoId)
+        console.log(this.todo)
     },
+    computed: {
+        date() {
+            let unformattedDate = new Date(this.todo.createdAt)
+            return unformattedDate.toDateString() + ', ' + unformattedDate.toLocaleTimeString()
+        } 
+    }
 }

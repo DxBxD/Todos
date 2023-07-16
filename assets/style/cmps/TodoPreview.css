@@ -31,7 +31,8 @@
 }
 
 .todo-preview .detail-btn,
-.todo-preview .remove-btn {
+.todo-preview .remove-btn,
+.todo-preview .edit-btn {
     padding: 5px 10px;
     margin-left: 10px;
     border: none;

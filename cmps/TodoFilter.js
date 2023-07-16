@@ -4,7 +4,7 @@ export default {
     template: `
         <section class="todo-filter">
             <input type="text" placeholder="Search todos" v-model="filterBy.txt">
-            <select type="dropdown" v-model="filterBy.status">
+            <select  v-model="filterBy.status">
                     <option value="all">All</option>
                     <option value="active">Active</option>
                     <option value="done">Done</option>

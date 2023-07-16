@@ -23,9 +23,9 @@ function query(filterBy = {}, sortBy = {}) {
                 const regex = new RegExp(filterBy.txt, 'i')
                 todos = todos.filter(todo => regex.test(todo.name))
             }
-            if (filterBy.status === 'active') {
+            if (filterBy.status === 'done') {
                 todos = todos.filter(todo => todo.isDone === true)
-            } else if (filterBy.status === 'done') {
+            } else if (filterBy.status === 'active') {
                 todos = todos.filter(todo => todo.isDone === false)
             }
         
@@ -39,7 +39,12 @@ function query(filterBy = {}, sortBy = {}) {
                         todos.sort((todoA, todoB) => (todoA.isDone - todoB.isDone) * -diff)
                         break
                     case 'createdAt':
-                        todos.sort((todoA, todoB) => (todoA.createdAt - todoB.createdAt) * diff)
+                        todos.sort((todoA, todoB) => {
+                            const dateA = new Date(todoA.createdAt)
+                            const dateB = new Date(todoB.createdAt)
+                            console.log('dateA:', dateA, 'dateB:', dateB)
+                            return (dateA.getTime() - dateB.getTime()) * diff
+                        })
                         break
                 }
             }
@@ -69,8 +74,8 @@ function save(todo) {
     }
 }
 
-function getEmptyTodo(name = '', isDone = false) {
-    return { _id: '', name, isDone }
+function getEmptyTodo(name = '', isDone = false, createdAt = Date.now()) {
+    return { _id: '', name, isDone , createdAt}
 }
 
 function _createTodos() {
